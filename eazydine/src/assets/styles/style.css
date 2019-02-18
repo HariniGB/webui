@@ -1,0 +1,149 @@
+header {
+	height: 72px;
+	display: flex;
+	align-items: center;
+	background: #ff3000;
+}
+.company-name {
+	flex: 1 1 auto;
+	font-size: 1.8rem;
+	color: #fff;
+	padding: 0 20px;
+}
+.header-menu {
+	flex-shrink: 0;
+	padding: 0 20px;
+}
+.header-menu .btn {
+	border: 1px solid #fff;
+	color: #fff;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.main-content {
+	position: relative;
+	display: flex;
+}
+.main-nav {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -200px;
+	width: 200px;
+	padding: 20px 0;
+	background: #fafafa;
+	border-right: 1px solid #eaeaea;
+	transition: left .3s ease-in;
+	z-index: 1;
+}
+.container-fluid {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	/*transition: padding-left .3s ease-in;*/
+}
+.show-nav .main-nav {
+	left: 0;
+}
+.show-nav .container-fluid {
+	/*padding-left: 215px;*/
+}
+
+.main-nav li {
+	padding: 6px 20px;
+}
+.main-nav li a {
+	color: #555;
+	text-decoration: none;
+	transform: color .3s ease;
+}
+.main-nav li:hover a {
+	color: #333;
+}
+.main-nav li a.active {
+	color: #007bff;
+	font-weight: bold;
+}
+
+.card-deck {
+	margin-top: 30px;
+}
+.card-deck .card {
+	min-width: 320px;
+	margin-bottom: 30px;
+}
+.card-header {
+	text-transform: capitalize;
+	font-size: 1.5rem;
+}
+.card-body strong {
+	display: block;
+	font-size: 2rem;
+	color: #518c8f;
+}
+.menu-controls {
+	margin: 30px 0;
+}
+.menu-form {
+	max-width: 960px;
+	margin-top: 30px;
+}
+.live-updates-cards .card {
+	min-width: 420px;
+}
+.live-updates-cards ul {
+	list-style: none;
+	text-align: left;
+	margin: 20px;
+	padding: 0;
+}
+.live-updates-cards ul li {
+	display: flex;
+}
+.live-updates-cards ul li span:first-child {
+	flex: 1 1 auto;
+}
+.live-updates-cards ul li span:last-child {
+	flex-shrink: 0;
+}
+.live-updates-cards ul li span:last-child::before {
+	content: "Qty: ";
+	display: "inline-block";
+	color: #518c8f;
+}
+.order-title {
+	font-size: 18px;
+	font-weight: 500;
+	color: #ff3000;
+	margin: 10px 0;
+}
+.order-status {
+	background: #6c757d;
+	padding: 5px 10px;
+	margin: 0 20px;
+	border-radius: 5px;
+	color: #fff;
+}
+.order-status.in-progress {
+	background: #17a2b8;
+}
+.order-status.served {
+	background: #28a745;
+}
+.order-total {
+	font-size: 24px;
+	font-weight: bold;
+	color: #ff3000;
+	margin: 10px 20px;
+	text-align: right;
+}
+
+
+
+
+
+
+
+
+
