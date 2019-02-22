@@ -8,6 +8,7 @@
     </div>
     <div class="form-group">
       <button class="btn btn-primary add-menu-btn" type="button" routerLink="/additem">Add Menu Item</button>
+        <!--Count: {{ (items$ | async)?.length }}-->
     </div>
   </form>
 </div>
@@ -24,13 +25,24 @@
   </tr>
   </thead>
   <tbody>
- <tr *ngFor="let item of (menu$ | async)?.items">
+<!-- <tr *ngFor="let item of (menu$ | async)?.items">
     <th scope="row"> {{item.name}}</th>
     <td><img src="{{item.imagepath}}" /></td>
     <td>{{item.serves}} persons</td>
     <td>${{item.price}}</td>
     <td>{{item.category.name}}</td>
     <td><a [routerLink]="['/edititem', item.id]">Edit</a> | <a (click)="deleteItem(item.id)" [routerLink]="">Delete</a></td>
-  </tr>
+  </tr>-->
+
+
+
+ <tr *ngFor="let item of (items$ | async);">
+  <th scope="row">{{item.name}}</th>
+  <td><img src="{{item.imagepath}}" /></td>
+  <td>{{item.serves}} persons</td>
+  <td>${{item.price}}</td>
+  <td>{{item.category.name}}</td>
+  <td><a [routerLink]="['/edititem', item.id]">Edit</a> | <a (click)="deleteItem(item.id)" [routerLink]="">Delete</a></td>
+ </tr>
   </tbody>
 </table>

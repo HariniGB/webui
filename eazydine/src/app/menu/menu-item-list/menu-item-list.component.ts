@@ -5,6 +5,7 @@ import {Menu} from "../../shared/models/menu";
 import {Router} from "@angular/router";
 import {ItemService} from "../../shared/services/item.service";
 import {filter} from "rxjs/operators";
+import {Item} from "../../shared/models/item";
 
 
 @Component({
@@ -15,12 +16,14 @@ import {filter} from "rxjs/operators";
 })
 export class MenuItemListComponent implements OnInit {
     menu$:Observable<Menu>;
+    items$:Observable<Item[]>;
     searchText:string;
     constructor(private router: Router,private menuService: MenuService, private itemService:ItemService){
     }
 
     ngOnInit() {
-        this.listItems();
+        //this.listItems();
+        this.listItemsOrdered();
     }
 
     deleteItem(itemid:number): boolean {
@@ -34,6 +37,13 @@ export class MenuItemListComponent implements OnInit {
 
     listItems():void{
         this.menu$ = this.menuService.getMenu(2);
+    }
+
+    listItemsOrdered():void{
+        this.items$ = this.itemService.readMenuItems(2);
+        this.items$.subscribe(data => {
+            console.log(data);
+        });
     }
 
    /* searchListItems(searchText:string):void{

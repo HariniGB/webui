@@ -17,11 +17,20 @@ export class ItemService {
   ){}
 
   readItems(): Observable<Item[]> {
-    const url = `${this.baseUrl}/`;
+    const url = `${this.baseUrl}`;
     return this.http.get(url).pipe(
         // Adapt each item in the raw data array
         map((data: any[]) => data.map(item => this.adapter.adapt(item))),
     );
+  }
+
+  readMenuItems(menuId:number): Observable<Item[]> {
+    const url = `${this.baseUrl}`+'?menuId='+menuId;
+    console.log("Menu URL ::"+ url);
+    return this.http.get(url).pipe(
+        map((data: any[]) => data), catchError((e:Response)=> throwError(e))
+    );
+
   }
 
   readItem(itemId : number): Observable<Item> {
