@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Adapter} from "../adapter/adapter";
-import {Item} from "./item";
+import {Restaurant} from "./restaurant";
 
 export class Category {
 
@@ -9,9 +9,9 @@ export class Category {
     public id: number;
     public name: string;
     public description: string;
-    public price: number;
-    public serves: number;
-    public imagepath: string;
+    public rank: number;
+    public restaurant: Restaurant;
+
 }
 
 @Injectable({providedIn: 'root'})
@@ -21,6 +21,7 @@ export class CategoryAdapter implements Adapter<Category> {
         categorymodel.id = item.id;
         categorymodel.name = item.name;
         categorymodel.description = item.description;
+        categorymodel.rank = item.rank;
         return categorymodel;
     }
 }

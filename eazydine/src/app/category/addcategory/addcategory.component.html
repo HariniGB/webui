@@ -1,0 +1,21 @@
+<div class="category-form">
+  <form>
+    <div class="form-group">
+      <label for="inputName">Name:</label>
+      <input [(ngModel)]="category.name" placeholder="Enter the category name" name="inputName" class="form-control" id="inputName">
+    </div>
+
+    <div class="form-group">
+      <label for="inputDescription">Description:</label>
+      <input [(ngModel)]="category.description" placeholder="Enter the category description" name="inputDescription" class="form-control" id="inputDescription">
+    </div>
+
+    <div class="form-group">
+      <label for="inputRank">Rank</label>
+      <input  [(ngModel)]="category.rank" id="inputRank"  name="inputRank" type="number" class="form-control" placeholder="Enter category rank" step="1" min="1" max="20" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="createCategory()">Add Category</button>
+
+  </form>
+</div>

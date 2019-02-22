@@ -1,0 +1,28 @@
+<h4>Category</h4>
+
+<div class="menu-controls">
+  <form class="form-inline">
+    <div class="form-group">
+      <button class="btn btn-primary add-menu-btn" type="button" routerLink="/addcategory">Add Category</button>
+    </div>
+  </form>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Rank</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let category of (categories$ | async)">
+    <th scope="row"> {{category.name}}</th>
+    <td> {{category.name}}</td>
+    <td> {{category.rank}}</td>
+    <td><a [routerLink]="['/editcategory', category.id]">Edit</a> | <a (click)="deleteCategory(category.id)" [routerLink]="">Delete</a></td>
+  </tr>
+  </tbody>
+</table>

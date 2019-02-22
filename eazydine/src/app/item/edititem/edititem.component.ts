@@ -28,7 +28,7 @@ export class EdititemComponent implements OnInit {
       console.log("itemid"+ this.itemid);
       this.item$ = this.itemService.readItem(this.itemid);
     });
-    this.categories$ =  this.categoryService.getCategories(1);
+    this.categories$ =  this.categoryService.readCategories(1);
     this.categories$.subscribe( data => console.log(data));
 
   }

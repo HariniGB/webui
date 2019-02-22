@@ -18,7 +18,7 @@ export class AdditemComponent implements OnInit {
   item: Item = new Item();
   categories$ : Observable<Category[]>;
   ngOnInit() {
-   this.categories$ =  this.categoryService.getCategories(1);
+   this.categories$ =  this.categoryService.readCategories(1);
     this.categories$.subscribe( data => console.log(data));
   }
 

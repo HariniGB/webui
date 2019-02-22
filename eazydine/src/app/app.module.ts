@@ -24,6 +24,9 @@ import {FormsModule} from "@angular/forms";
 import { AdditemComponent } from './item/additem/additem.component';
 import { EdititemComponent } from './item/edititem/edititem.component';
 import {OrderModule} from "ngx-order-pipe";
+import { AddcategoryComponent } from './category/addcategory/addcategory.component';
+import { EditcategoryComponent } from './category/editcategory/editcategory.component';
+import { ListcategoriesComponent } from './category/listcategories/listcategories.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {OrderModule} from "ngx-order-pipe";
     LiveupdateComponent,
     DashboardComponent,
     AdditemComponent,
-    EdititemComponent
+    EdititemComponent,
+    AddcategoryComponent,
+    EditcategoryComponent,
+    ListcategoriesComponent
   ],
   imports: [
     BrowserModule,
