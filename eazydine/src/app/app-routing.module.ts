@@ -4,12 +4,15 @@ import {MenuItemListComponent} from './menu/menu-item-list/menu-item-list.compon
 import {AddmenuComponent} from './menu/addmenu/addmenu.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LiveupdateComponent} from './liveupdate/liveupdate.component';
-import {EditmenuComponent} from "./menu/editmenu/editmenu.component";
-import {AdditemComponent} from "./item/additem/additem.component";
-import {EdititemComponent} from "./item/edititem/edititem.component";
-import {EditcategoryComponent} from "./category/editcategory/editcategory.component";
-import {AddcategoryComponent} from "./category/addcategory/addcategory.component";
-import {ListcategoriesComponent} from "./category/listcategories/listcategories.component";
+import {EditmenuComponent} from './menu/editmenu/editmenu.component';
+import {AdditemComponent} from './item/additem/additem.component';
+import {EdititemComponent} from './item/edititem/edititem.component';
+import {EditcategoryComponent} from './category/editcategory/editcategory.component';
+import {AddcategoryComponent} from './category/addcategory/addcategory.component';
+import {ListcategoriesComponent} from './category/listcategories/listcategories.component';
+import {EdittableComponent} from './table/edittable/edittable.component';
+import {AddtableComponent} from './table/addtable/addtable.component';
+import {ListtablesComponent} from './table/listtables/listtables.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -23,6 +26,9 @@ const routes: Routes = [
   {path: 'editcategory/:id', component: EditcategoryComponent},
   {path: 'category', component: ListcategoriesComponent},
   {path: 'liveupdate', component: LiveupdateComponent},
+  {path: 'addtable', component: AddtableComponent},
+  {path: 'edittable/:id', component: EdittableComponent},
+  {path: 'table', component: ListtablesComponent},
 ];
 
 @NgModule({

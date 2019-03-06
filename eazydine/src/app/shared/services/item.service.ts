@@ -10,7 +10,7 @@ import {catchError, map} from 'rxjs/operators';
 export class ItemService {
 
   private baseUrl = 'http://localhost:8080/api/items/';
-  //https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
+  // https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
   constructor(
       private http: HttpClient,
       private adapter: ItemAdapter,
@@ -24,11 +24,11 @@ export class ItemService {
     );
   }
 
-  readMenuItems(menuId:number): Observable<Item[]> {
-    const url = `${this.baseUrl}`+'?menuId='+menuId;
-    console.log("Menu URL ::"+ url);
+  readMenuItems(menuId: number): Observable<Item[]> {
+    const url = `${this.baseUrl}` + '?menuId=' + menuId;
+    console.log('Menu URL ::' + url);
     return this.http.get(url).pipe(
-        map((data: any[]) => data), catchError((e:Response)=> throwError(e))
+        map((data: any[]) => data), catchError((e: Response) => throwError(e))
     );
 
   }

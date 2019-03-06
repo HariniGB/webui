@@ -1,0 +1,28 @@
+<h4>Restaurant Table</h4>
+
+<div class="menu-controls">
+  <form class="form-inline">
+    <div class="form-group">
+      <button class="btn btn-primary add-menu-btn" type="button" routerLink="/addtable">Add Table</button>
+    </div>
+  </form>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Number</th>
+    <th scope="col">Description</th>
+    <th scope="col">Count of Chairs</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let table of (tables$ | async)">
+    <th scope="row"> {{table.number}}</th>
+    <td> {{table.description}}</td>
+    <td> {{table.chairs}}</td>
+    <td><a [routerLink]="['/edittable', table.id]">Edit</a> | <a (click)="deleteTable(table.id)" [routerLink]="">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
