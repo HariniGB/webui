@@ -26,6 +26,7 @@ export class ItemAdapter implements Adapter<Item> {
         itemmodel.price = item.price;
         itemmodel.serves = item.serves;
         itemmodel.imagepath = item.imagepath;
+        itemmodel.category = item.category;
         return itemmodel;
     }
 }
