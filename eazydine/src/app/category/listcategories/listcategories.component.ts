@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
-import {Category} from "../../shared/models/category";
-import {CategoryService} from "../../shared/services/category.service";
+import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
+import {Category} from '../../shared/models/category';
+import {CategoryService} from '../../shared/services/category.service';
 
 @Component({
   selector: 'app-listcategories',
@@ -10,12 +10,12 @@ import {CategoryService} from "../../shared/services/category.service";
   styleUrls: ['./listcategories.component.css']
 })
 export class ListcategoriesComponent implements OnInit {
-  categories$:Observable<Category[]>;
-  searchText:string;
-  constructor(private router: Router,private categoryService: CategoryService){
+  categories$: Observable<Category[]>;
+  searchText: string;
+  constructor(private router: Router, private categoryService: CategoryService){
   }
 
-  listCategories():void{
+  listCategories(): void {
     this.categories$ =  this.categoryService.readCategories(1);
   }
 
@@ -23,13 +23,12 @@ export class ListcategoriesComponent implements OnInit {
     this.listCategories();
   }
 
-  deleteCategory(categoryId:number): boolean {
+  deleteCategory(categoryId: number): boolean {
     this.categoryService.deleteCategory(categoryId)
         .subscribe(data => {
-          alert("Category deleted successfully.");
+          alert('Category deleted successfully.');
           this.listCategories();
         });
     return false;
-  };
-
+  }
 }

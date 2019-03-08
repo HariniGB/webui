@@ -6,7 +6,6 @@ import {Menu} from '../../shared/models/menu';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ItemService} from '../../shared/services/item.service';
 import {CategoryService} from '../../shared/services/category.service';
-import {StringifyOptions} from 'querystring';
 
 @Component({
   selector: 'app-edititem',

@@ -31,6 +31,8 @@ import { ListcategoriesComponent } from './category/listcategories/listcategorie
 import { AddtableComponent } from './table/addtable/addtable.component';
 import { EdittableComponent } from './table/edittable/edittable.component';
 import { ListtablesComponent } from './table/listtables/listtables.component';
+import { EditrestaurantComponent } from './restaurant/editrestaurant/editrestaurant.component';
+import { ListrestaurantComponent } from './restaurant/listrestaurant/listrestaurant.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ListtablesComponent } from './table/listtables/listtables.component';
     ListcategoriesComponent,
     AddtableComponent,
     EdittableComponent,
-    ListtablesComponent
+    ListtablesComponent,
+    EditrestaurantComponent,
+    ListrestaurantComponent
   ],
   imports: [
     BrowserModule,

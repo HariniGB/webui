@@ -13,6 +13,8 @@ import {ListcategoriesComponent} from './category/listcategories/listcategories.
 import {EdittableComponent} from './table/edittable/edittable.component';
 import {AddtableComponent} from './table/addtable/addtable.component';
 import {ListtablesComponent} from './table/listtables/listtables.component';
+import {ListrestaurantComponent} from './restaurant/listrestaurant/listrestaurant.component';
+import {EditrestaurantComponent} from './restaurant/editrestaurant/editrestaurant.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -29,6 +31,8 @@ const routes: Routes = [
   {path: 'addtable', component: AddtableComponent},
   {path: 'edittable/:id', component: EdittableComponent},
   {path: 'table', component: ListtablesComponent},
+  {path: 'editrestaurant/:id', component: EditrestaurantComponent},
+  {path: 'restaurant', component: ListrestaurantComponent},
 ];
 
 @NgModule({
