@@ -1,0 +1,21 @@
+<div class="table-form">
+  <form>
+    <div class="form-group">
+      <label for="inputNumber">Number:</label>
+      <input [(ngModel)]="table.number" placeholder="Enter the table number" name="inputNumber" class="form-control" id="inputNumber">
+    </div>
+
+    <div class="form-group">
+      <label for="inputDescription">Description:</label>
+      <input [(ngModel)]="table.description" placeholder="Enter the table description" name="inputDescription" class="form-control" id="inputDescription">
+    </div>
+
+    <div class="form-group">
+      <label for="inputChairs">Count of Chairs:</label>
+      <input  [(ngModel)]="table.chairs" id="inputChairs"  name="inputChairs" type="number" class="form-control" placeholder="Enter the number of chairs" step="1" min="1" max="20" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="createTable()">Add Table</button>
+
+  </form>
+</div>

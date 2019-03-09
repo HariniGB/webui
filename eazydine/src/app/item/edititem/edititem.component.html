@@ -15,19 +15,11 @@
       <input  [(ngModel)]="item.imagepath" class="form-control-file" name="inputFile" id="inputFile" />
     </div>-->
 
-    <!--<div class="form-group">
-      <label for="inputCategory">Category</label>
-      <select class="form-control" id="inputCategory">
-        <option>Appetizer</option>
-        <option>Salad</option>
-      </select>
-
-    </div>-->
 
     <div class="form-group">
       <label for="inputCategory">Category</label>
-      <select class="form-control" id="inputCategory" [(ngModel)]="updateditem.category" name="inputCategory">
-        <option *ngFor="let category of (categories$ | async);let i = index; let isFirst = first;" [ngValue]="category">{{category.name}}</option>
+      <select class="form-control" id="inputCategory"  [(ngModel)]="updateditem.category"  name="inputCategory">
+        <option  *ngFor="let category of (categories$ | async)" [selected]="category.name == updateditem.category.name" [ngValue]="category" >{{category.name}}</option>
       </select>
     </div>
 

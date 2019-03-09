@@ -16,17 +16,23 @@ import { HeaderComponent } from './header/header.component';
 import { MainnavComponent } from './mainnav/mainnav.component';
 import { LiveupdateComponent } from './liveupdate/liveupdate.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MenuService} from "./shared/services/menu.service";
-import {RestaurantService} from "./shared/services/restaurant.service";
-import {ItemService} from "./shared/services/item.service";
-import {CategoryService} from "./shared/services/category.service";
-import {FormsModule} from "@angular/forms";
+import {MenuService} from './shared/services/menu.service';
+import {RestaurantService} from './shared/services/restaurant.service';
+import {ItemService} from './shared/services/item.service';
+import {CategoryService} from './shared/services/category.service';
+import {TableService} from './shared/services/table.service';
+import {FormsModule} from '@angular/forms';
 import { AdditemComponent } from './item/additem/additem.component';
 import { EdititemComponent } from './item/edititem/edititem.component';
-import {OrderModule} from "ngx-order-pipe";
+import {OrderModule} from 'ngx-order-pipe';
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { EditcategoryComponent } from './category/editcategory/editcategory.component';
 import { ListcategoriesComponent } from './category/listcategories/listcategories.component';
+import { AddtableComponent } from './table/addtable/addtable.component';
+import { EdittableComponent } from './table/edittable/edittable.component';
+import { ListtablesComponent } from './table/listtables/listtables.component';
+import { EditrestaurantComponent } from './restaurant/editrestaurant/editrestaurant.component';
+import { ListrestaurantComponent } from './restaurant/listrestaurant/listrestaurant.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,12 @@ import { ListcategoriesComponent } from './category/listcategories/listcategorie
     EdititemComponent,
     AddcategoryComponent,
     EditcategoryComponent,
-    ListcategoriesComponent
+    ListcategoriesComponent,
+    AddtableComponent,
+    EdittableComponent,
+    ListtablesComponent,
+    EditrestaurantComponent,
+    ListrestaurantComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +64,7 @@ import { ListcategoriesComponent } from './category/listcategories/listcategorie
     AngularFireDatabaseModule,
     AppRoutingModule
   ],
-  providers: [MenuService,RestaurantService,ItemService,CategoryService],
+  providers: [MenuService, RestaurantService, ItemService, CategoryService, TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

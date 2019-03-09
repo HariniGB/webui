@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {Adapter} from "../adapter/adapter";
-import {Restaurant} from "./restaurant";
+import {Injectable} from '@angular/core';
+import {Adapter} from '../adapter/adapter';
+import {Restaurant} from './restaurant';
 
 export class Category {
 
