@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { MenuItemListComponent } from './menu/menu-item-list/menu-item-list.component';
 import { AddmenuComponent } from './menu/addmenu/addmenu.component';
@@ -62,6 +63,7 @@ import { ListrestaurantComponent } from './restaurant/listrestaurant/listrestaur
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     AppRoutingModule
   ],
   providers: [MenuService, RestaurantService, ItemService, CategoryService, TableService],
