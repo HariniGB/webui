@@ -37,8 +37,6 @@ import {EditrestaurantComponent} from './restaurant/editrestaurant/editrestauran
   {path: 'liveupdate', component: LiveupdateComponent, canActivate: [AuthGuard]},
 ];*/
 
-
-
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: '', component: LoginComponent},
