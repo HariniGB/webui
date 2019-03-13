@@ -1,0 +1,68 @@
+<h4>Restaurant</h4>
+
+<div class="restaurant-controls" *ngIf="(restaurant$ | async) as listedrestaurant; else loading">
+  <form class="form-inline">
+    <div class="form-group">
+      <button class="btn btn-primary add-menu-btn" type="button"  [routerLink]="['/editrestaurant', listedrestaurant.id]">Update Restaurant</button>
+    </div>
+  </form>
+  <br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"><b>Name</b></th>
+      <td> {{listedrestaurant.name}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Tagline</b></th>
+      <td>{{listedrestaurant.tagline}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Cuisine</b></th>
+      <td>{{listedrestaurant.cuisine}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Menus</b></th>
+      <td *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a>
+        <!--<ul>-->
+          <!--<li *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a></li>-->
+        <!--</ul>-->
+      </td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Address 1</b></th>
+      <td>{{listedrestaurant.address1}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Address 2</b></th>
+      <td>{{listedrestaurant.address2}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>City</b></th>
+      <td>{{listedrestaurant.city}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>State</b></th>
+      <td>{{listedrestaurant.state}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Country</b></th>
+      <td>{{listedrestaurant.country}}</td>
+    </tr>
+    <tr>
+      <th scope="row"><b>Zip Code</b></th>
+      <td>{{listedrestaurant.zipcode}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+<ng-template #loading>
+  Loading Restaurant...
+</ng-template>

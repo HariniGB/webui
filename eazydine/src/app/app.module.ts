@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule , AngularFireList} from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { MenuItemListComponent } from './menu/menu-item-list/menu-item-list.component';
 import { AddmenuComponent } from './menu/addmenu/addmenu.component';
@@ -15,7 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { MainnavComponent } from './mainnav/mainnav.component';
 import { LiveupdateComponent } from './liveupdate/liveupdate.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MenuService} from './shared/services/menu.service';
+import {MenuService} from './shared/services/menu.service'
 import {RestaurantService} from './shared/services/restaurant.service';
 import {ItemService} from './shared/services/item.service';
 import {CategoryService} from './shared/services/category.service';
@@ -79,9 +80,10 @@ import {AuthGuard} from "./shared/security/auth.guard";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     AppRoutingModule
   ],
-  providers: [MenuService,RestaurantService,ItemService,CategoryService, AuthService,AuthGuard],
+  providers: [MenuService,RestaurantService,ItemService,CategoryService,TableService,AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

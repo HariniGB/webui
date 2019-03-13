@@ -5,12 +5,18 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCbYTv7aW5NMFSFCPM78_wxD5fCae1O-kE',
+    /**apiKey: 'AIzaSyCbYTv7aW5NMFSFCPM78_wxD5fCae1O-kE',
     authDomain: 'eazydine-e500b.firebaseapp.com',
     databaseURL: 'https://eazydine-e500b.firebaseio.com',
     projectId: 'eazydine-e500b',
     storageBucket: '',
-    messagingSenderId: '203699803794'
+    messagingSenderId: '203699803794'**/
+    apiKey: "AIzaSyABA-gaI5WxO6mJTsYUOoLm7mkgLJgRcak",
+    authDomain: "eazydine-app.firebaseapp.com",
+    databaseURL: "https://eazydine-app.firebaseio.com",
+    projectId: "eazydine-app",
+    storageBucket: "eazydine-app.appspot.com",
+    messagingSenderId: "873827794493"
   }
 };
 
