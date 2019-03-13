@@ -139,10 +139,8 @@ header {
 	text-align: right;
 }
 .img-fluid {
-	max-width: 10%;
-	max-height: 100%;
-	width: 100%;
-	height: 5vw;
+	max-width: 15%;
+	max-height: 50%;
 	object-fit: cover;
 }
 
