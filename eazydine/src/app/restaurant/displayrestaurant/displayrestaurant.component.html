@@ -20,6 +20,10 @@
       <td> {{listedrestaurant.name}}</td>
     </tr>
     <tr>
+      <th scope="row"><b>User UUID</b></th>
+      <td> {{listedrestaurant.uuid}}</td>
+    </tr>
+    <tr>
       <th scope="row"><b>Tagline</b></th>
       <td>{{listedrestaurant.tagline}}</td>
     </tr>
@@ -29,11 +33,12 @@
     </tr>
     <tr>
       <th scope="row"><b>Menus</b></th>
-      <td *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a>
-        <!--<ul>-->
-          <!--<li *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a></li>-->
-        <!--</ul>-->
-      </td>
+      <td><a [routerLink]="['/menu']">Manage Menus</a></td>
+      <!--<td *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a>
+        &lt;!&ndash;<ul>&ndash;&gt;
+          &lt;!&ndash;<li *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a></li>&ndash;&gt;
+        &lt;!&ndash;</ul>&ndash;&gt;
+      </td>-->
     </tr>
     <tr>
       <th scope="row"><b>Address 1</b></th>
