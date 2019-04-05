@@ -15,8 +15,8 @@ export class LiveupdateComponent implements OnInit {
   constructor(private route:ActivatedRoute, private router: Router, private orderService: OrderService){}
   table$: AngularFireList<any[]>;
   ngOnInit() {
-    //this.table$  = this.orderService.readTable('restaurantIdchipotle','tableId');
-    //this.table$.valueChanges().subscribe((datas) => { console.log("datas", datas)});
+    this.table$  = this.orderService.readTable('restaurantIdchipotle','tableId');
+    this.table$.valueChanges().subscribe((datas) => { console.log("datas", datas)});
     //this.db.list('/customers').valueChanges().subscribe((datas) => { console.log("datas", datas) },(err)=>{ console.log("probleme : ", err) });
   }
 

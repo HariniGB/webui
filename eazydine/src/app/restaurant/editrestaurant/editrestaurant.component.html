@@ -17,6 +17,29 @@
     </div>
 
     <div class="form-group">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" [attr.id]="updatedrestaurant.allowpreorder" [(ngModel)]="updatedrestaurant.allowpreorder" (change)="log($event)" [checked]="updatedrestaurant.allowpreorder" name="inputAllowPreorder" id="inputAllowPreorder"/>
+        <label class="form-check-label" for="inputAllowPreorder">Allow Pre-order</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputAvgPrice">Average Price</label>
+      <input  [(ngModel)]="updatedrestaurant.avgprice" id="inputAvgPrice"  name="inputAvgPrice" type="number" class="form-control" placeholder="Enter the average price" step=".5" min="1" max="40"/>
+    </div>
+
+    <div class="form-group">
+      <label for="inputNumTables">Number of tables:</label>
+      <input  [(ngModel)]="updatedrestaurant.numoftables" id="inputNumTables"  name="inputNumTables" type="number" class="form-control" placeholder="Enter number of tables" step="1" min="1" max="40"/>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPhoneNumber">Phone Number</label>
+      <input  [(ngModel)]="updatedrestaurant.phonenumber" id="inputPhoneNumber"  name="inputPhoneNumber" class="form-control" placeholder="Enter the phonenumber" />
+    </div>
+
+
+    <div class="form-group">
       <label for="inputAddr1">Address 1:</label>
       <input  [(ngModel)]="updatedrestaurant.address1" id="inputAddr1"  name="inputAddr1" type="text" class="form-control" placeholder="Enter restaurant Address Street" step="1" min="1" max="20"/>
     </div>
@@ -33,18 +56,18 @@
     </div>
 
     <div class="form-group">
+      <label for="inputZipCode">ZipCode</label>
+      <input  [(ngModel)]="updatedrestaurant.zipcode" id="inputZipCode"  name="inputZipCode" type="number" class="form-control" placeholder="Enter restaurant zip code" step="1" min="5" max="10" />
+    </div>
+
+    <div class="form-group">
       <label for="inputState">State:</label>
-      <input  [(ngModel)]="updatedrestaurant.state" id="inputState"  name="inputState" type="text" class="form-control" placeholder="Enter restaurant Street" step="1" min="1" max="20"/>
+      <input  [(ngModel)]="updatedrestaurant.state" id="inputState"  name="inputState" type="text" class="form-control" placeholder="Enter restaurant State" step="1" min="1" max="20"/>
     </div>
 
     <div class="form-group">
       <label for="inputCountry">Country:</label>
       <input  [(ngModel)]="updatedrestaurant.country" id="inputCountry"  name="inputCountry" type="text" class="form-control" placeholder="Enter restaurant country" step="1" min="2" max="10"/>
-    </div>
-
-    <div class="form-group">
-      <label for="inputZipCode">Country</label>
-      <input  [(ngModel)]="updatedrestaurant.zipcode" id="inputZipCode"  name="inputZipCode" type="number" class="form-control" placeholder="Enter restaurant zip code" step="1" min="5" max="10" />
     </div>
 
     <button type="submit" class="btn btn-primary" (click)="updateRestaurant(updatedrestaurant)">Save Restaurant</button>

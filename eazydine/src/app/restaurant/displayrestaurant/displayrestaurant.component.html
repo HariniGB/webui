@@ -1,9 +1,9 @@
 <h4>Restaurant</h4>
 
-<div class="restaurant-controls" *ngIf="(restaurant$ | async) as listedrestaurant; else loading">
+<div class="restaurant-controls" *ngIf="(restaurant$ | async) as displayedrestaurant; else loading">
   <form class="form-inline">
     <div class="form-group">
-      <button class="btn btn-primary add-menu-btn" type="button"  [routerLink]="['/editrestaurant', listedrestaurant.id]">Update Restaurant</button>
+      <button class="btn btn-primary add-menu-btn" type="button"  [routerLink]="['/editrestaurant', displayedrestaurant.id]">Update Restaurant</button>
     </div>
   </form>
   <br>
@@ -16,54 +16,80 @@
     </thead>
     <tbody>
     <tr>
-      <th scope="row"><b>Name</b></th>
-      <td> {{listedrestaurant.name}}</td>
+      <th scope="row">Name</th>
+      <td> {{displayedrestaurant.name}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>User UUID</b></th>
-      <td> {{listedrestaurant.uuid}}</td>
+      <th scope="row">Tagline</th>
+      <td>{{displayedrestaurant.tagline}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>Tagline</b></th>
-      <td>{{listedrestaurant.tagline}}</td>
+      <th scope="row">Cuisine</th>
+      <td>{{displayedrestaurant.cuisine}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>Cuisine</b></th>
-      <td>{{listedrestaurant.cuisine}}</td>
-    </tr>
-    <tr>
-      <th scope="row"><b>Menus</b></th>
+      <th scope="row">Menus</th>
       <td><a [routerLink]="['/menu']">Manage Menus</a></td>
-      <!--<td *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a>
+      <!--<td *ngFor="let menu of displayedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a>
         &lt;!&ndash;<ul>&ndash;&gt;
-          &lt;!&ndash;<li *ngFor="let menu of listedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a></li>&ndash;&gt;
+          &lt;!&ndash;<li *ngFor="let menu of displayedrestaurant.menus"><a href="http://localhost:4200/menu">{{menu.name}}</a></li>&ndash;&gt;
         &lt;!&ndash;</ul>&ndash;&gt;
       </td>-->
     </tr>
     <tr>
-      <th scope="row"><b>Address 1</b></th>
-      <td>{{listedrestaurant.address1}}</td>
+      <th scope="row">Number of tables</th>
+      <td>{{displayedrestaurant.numoftables}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>Address 2</b></th>
-      <td>{{listedrestaurant.address2}}</td>
+      <th scope="row">Average Price</th>
+      <td>{{displayedrestaurant.avgprice}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>City</b></th>
-      <td>{{listedrestaurant.city}}</td>
+      <th scope="row">Allow Pre-Order</th>
+      <td>{{displayedrestaurant.allowpreorder}}</td>
+    </tr>
+
+
+    <tr>
+      <th scope="row">Firebase Id</th>
+      <td>{{displayedrestaurant.firebaseId}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>State</b></th>
-      <td>{{listedrestaurant.state}}</td>
+      <th scope="row">Restaurant DB Id</th>
+      <td>{{displayedrestaurant.id}}</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Phone Number</th>
+      <td>{{displayedrestaurant.phonenumber}}</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Address 1</th>
+      <td>{{displayedrestaurant.address1}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>Country</b></th>
-      <td>{{listedrestaurant.country}}</td>
+      <th scope="row">Address 2</th>
+      <td>{{displayedrestaurant.address2}}</td>
     </tr>
     <tr>
-      <th scope="row"><b>Zip Code</b></th>
-      <td>{{listedrestaurant.zipcode}}</td>
+      <th scope="row">City</th>
+      <td>{{displayedrestaurant.city}}</td>
     </tr>
+    <tr>
+      <th scope="row">Zip Code</th>
+      <td>{{displayedrestaurant.zipcode}}</td>
+    </tr>
+    <tr>
+      <th scope="row">State</th>
+      <td>{{displayedrestaurant.state}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Country</th>
+      <td>{{displayedrestaurant.country}}</td>
+    </tr>
+
+
     </tbody>
   </table>
 

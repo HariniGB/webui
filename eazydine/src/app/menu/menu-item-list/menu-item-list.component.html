@@ -1,19 +1,17 @@
 <h4>Menu</h4>
 
-<div class="menu-controls">
+<div class="form-controls">
   <form class="form-inline">
     <div class="form-group mr-4">
-      <input ng-model="searchText" class="form-control mr-2" type="search" placeholder="Search Menu Items" aria-label="Search">
-      <button class="btn btn-secondary" type="submit">Search</button>
+        <button class="btn btn-secondary add-menu-btn" type="button" routerLink="/menu">Back</button>
     </div>
     <div class="form-group">
-      <button class="btn btn-primary add-menu-btn" type="button" routerLink="/additem">Add Menu Item</button>
-        <!--Count: {{ (items$ | async)?.length }}-->
+      <button class="btn btn-primary add-menu-btn" type="button" [routerLink]="['/editmenu', menuId,'additem']">Add Menu Item</button>
     </div>
   </form>
 </div>
 
-<table class="table table-striped">
+<table class="table table-striped table-list">
   <thead>
   <tr>
     <th scope="col">Name</th>
@@ -42,7 +40,7 @@
   <td>{{item.serves}} persons</td>
   <td>${{item.price}}</td>
   <td>{{item.category.name}}</td>
-  <td><a [routerLink]="['/edititem', item.id]">Edit</a> | <a (click)="deleteItem(item.id)" [routerLink]="">Delete</a></td>
+  <td><a [routerLink]="['/editmenu', menuId,'edititem', item.id]">Edit</a> | <a (click)="deleteItem(item.id)" [routerLink]="">Delete</a></td>
  </tr>
   </tbody>
 </table>

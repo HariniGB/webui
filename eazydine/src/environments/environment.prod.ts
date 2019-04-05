@@ -5,7 +5,7 @@ export const environment = {
     authDomain: 'eazydine-e500b.firebaseapp.com',
     databaseURL: 'https://eazydine-e500b.firebaseio.com',
     projectId: 'eazydine-e500b',
-    storageBucket: '',
+    storageBucket: 'eazydine-e500b.appspot.com',
     messagingSenderId: '203699803794'
   }
 };

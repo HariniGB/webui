@@ -8,6 +8,7 @@ import {Observable} from "rxjs";
 import {Category} from "../../shared/models/category";
 import {RestaurantService} from "../../shared/services/restaurant.service";
 import {Restaurant} from "../../shared/models/restaurant";
+import {GlobalutilService} from "../../shared/services/globalutil.service";
 
 @Component({
   selector: 'app-addcategory',
@@ -16,15 +17,19 @@ import {Restaurant} from "../../shared/models/restaurant";
 })
 export class AddcategoryComponent implements OnInit {
 
-  constructor(private router: Router,private categoryService: CategoryService) { }
+  constructor(private router: Router,private globalutilService: GlobalutilService,private categoryService: CategoryService) { }
   category: Category = new Category();
+  restaurantId: number;
+
+
   ngOnInit() {
+    this.restaurantId = this.globalutilService.getSessionRestaurantId();
   }
 
   createCategory(): void {
     console.log(this.category);
     var categoryRestaurant = new Restaurant();
-    categoryRestaurant.id = 1;
+    categoryRestaurant.id = this.restaurantId;
     this.category.restaurant =categoryRestaurant;
     this.categoryService.createCategory(this.category)
         .subscribe( data => {

@@ -2,12 +2,12 @@
   <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="company-name">EazyDine</div>
+  <div class="company-name"><a href="#" routerLink="/dashboard">EazyDine</a></div>
   <div class="header-menu dropdown">
-    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Avatar</button>
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{uemail$}}</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Edit Profile</a>
-      <a class="dropdown-item" href="#">Logout</a>
+      <a class="dropdown-item" [routerLink]="['/selectrestaurant']">Select Restaurant</a>
+      <a class="dropdown-item" [routerLink]="" (click)="logout()">Logout</a>
     </div>
   </div>
 </header>

@@ -19,11 +19,11 @@ export class OrderService {
 
   }
 
-  readTable(restaurantId: string, tableId :string):Observable<any>{
-    console.log('Hello..');
-   this.db.list('/customers').valueChanges()
-        .subscribe((datas) => { console.log("datas", datas) },(err)=>{ console.log("probleme : ", err) });
-   return
+  readTable(restaurantId: string, tableId :string):AngularFireList<any[]>{
+    /*console.log('Hello..');
+        .subscribe((datas) => { console.log("datas", datas) },(err)=>{ console.log("probleme : ", err) });*/
+   return  this.db.list('/restaurants');
+
 
   }
 

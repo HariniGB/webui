@@ -16,8 +16,12 @@ import {RegisterComponent} from "./register/register.component";
 import {EdittableComponent} from './table/edittable/edittable.component';
 import {AddtableComponent} from './table/addtable/addtable.component';
 import {ListtablesComponent} from './table/listtables/listtables.component';
-import {ListrestaurantComponent} from './restaurant/listrestaurant/listrestaurant.component';
+import {DisplayrestaurantComponent} from './restaurant/displayrestaurant/displayrestaurant.component';
 import {EditrestaurantComponent} from './restaurant/editrestaurant/editrestaurant.component';
+import {AddrestaurantComponent} from "./restaurant/addrestaurant/addrestaurant.component";
+import {ListmenusComponent} from "./menu/listmenus/listmenus.component";
+import {WaitlistComponent} from "./waitlist/waitlist.component";
+import {SelectrestaurantComponent} from "./restaurant/selectrestaurant/selectrestaurant.component";
 
 /*const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -38,23 +42,37 @@ import {EditrestaurantComponent} from './restaurant/editrestaurant/editrestauran
 ];*/
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: '', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'menu', component: MenuItemListComponent},
-  {path: 'addmenu', component: AddmenuComponent},
-  {path: 'editmenu/:id', component: EditmenuComponent},
-  {path: 'additem', component: AdditemComponent},
-  {path: 'edititem/:id', component: EdititemComponent},
-  {path: 'addcategory', component: AddcategoryComponent},
-  {path: 'editcategory/:id', component: EditcategoryComponent},
-  {path: 'category', component: ListcategoriesComponent},
-  {path: 'liveupdate', component: LiveupdateComponent},
-  {path: 'addtable', component: AddtableComponent},
-  {path: 'edittable/:id', component: EdittableComponent},
-  {path: 'table', component: ListtablesComponent},
-  {path: 'editrestaurant/:id', component: EditrestaurantComponent},
-  {path: 'restaurant', component: ListrestaurantComponent},
+  {
+    path: 'menu',
+    children:[
+      {
+        path: '',
+        component: ListmenusComponent
+      }
+    ],
+    canActivate: [AuthGuard]
+  },
+  {path: 'addmenu', component: AddmenuComponent, canActivate: [AuthGuard]},
+  {path: 'editmenu/:id', component: EditmenuComponent, canActivate: [AuthGuard]},
+  {path: 'editmenuitems/:id', component: MenuItemListComponent, canActivate: [AuthGuard]},
+  {path: 'editmenu/:menuId/additem', component: AdditemComponent, canActivate: [AuthGuard]},
+  {path: 'editmenu/:menuId/edititem/:id', component: EdititemComponent, canActivate: [AuthGuard]},
+  {path: 'addcategory', component: AddcategoryComponent, canActivate: [AuthGuard]},
+  {path: 'editcategory/:id', component: EditcategoryComponent, canActivate: [AuthGuard]},
+  {path: 'category', component: ListcategoriesComponent, canActivate: [AuthGuard]},
+  {path: 'liveupdate', component: LiveupdateComponent, canActivate: [AuthGuard]},
+  {path: 'waitlist', component: WaitlistComponent, canActivate: [AuthGuard]},
+  {path: 'addtable', component: AddtableComponent, canActivate: [AuthGuard]},
+  {path: 'edittable/:id', component: EdittableComponent, canActivate: [AuthGuard]},
+  {path: 'table', component: ListtablesComponent, canActivate: [AuthGuard]},
+  {path: 'editrestaurant/:id', component: EditrestaurantComponent, canActivate: [AuthGuard]},
+  {path: 'displayrestaurant', component: DisplayrestaurantComponent, canActivate: [AuthGuard]},
+  {path: 'selectrestaurant', component: SelectrestaurantComponent, canActivate: [AuthGuard]},
+  {path: 'addrestaurant', component: AddrestaurantComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

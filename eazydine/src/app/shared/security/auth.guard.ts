@@ -3,6 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from "
 import {Observable} from "rxjs/Rx";
 import {Injectable} from "@angular/core";
 import {AuthService} from "./auth.service";
+import {AuthInfo} from "./auth-info";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,18 +13,26 @@ export class AuthGuard implements CanActivate {
 
     }
 
+    storageAuthInfo: AuthInfo;
+
     canActivate(route:ActivatedRouteSnapshot,
                 state:RouterStateSnapshot):Observable<boolean> {
 
+       var currentUser = sessionStorage.getItem("currentUser");
+        if(currentUser){
+            this.storageAuthInfo =  JSON.parse(currentUser);
+            return Observable.of(true);
+        }else {
+            return this.authService.authInfo$.pipe(
+                map(authInfo => authInfo.isLoggedIn()),
+                take(1),
+                tap(allowed => {
+                    if (!allowed) {
+                        this.router.navigate(['/login']);
+                    }
+                }),);
+        }
 
-        return this.authService.authInfo$.pipe(
-            map(authInfo => authInfo.isLoggedIn()),
-            take(1),
-            tap(allowed => {
-                if(!allowed) {
-                    this.router.navigate(['/login']);
-                }
-            }),);
     }
 
 }

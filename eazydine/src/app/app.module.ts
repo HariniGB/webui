@@ -33,13 +33,17 @@ import { AddtableComponent } from './table/addtable/addtable.component';
 import { EdittableComponent } from './table/edittable/edittable.component';
 import { ListtablesComponent } from './table/listtables/listtables.component';
 import { EditrestaurantComponent } from './restaurant/editrestaurant/editrestaurant.component';
-import { ListrestaurantComponent } from './restaurant/listrestaurant/listrestaurant.component';
+import { DisplayrestaurantComponent } from './restaurant/displayrestaurant/displayrestaurant.component';
 import { LoginComponent } from './login/login.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import {AuthService} from "./shared/security/auth.service";
 import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 import {AuthGuard} from "./shared/security/auth.guard";
+import { AddrestaurantComponent } from './restaurant/addrestaurant/addrestaurant.component';
+import { ListmenusComponent } from './menu/listmenus/listmenus.component';
+import { WaitlistComponent } from './waitlist/waitlist.component';
+import { SelectrestaurantComponent } from './restaurant/selectrestaurant/selectrestaurant.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,11 @@ import {AuthGuard} from "./shared/security/auth.guard";
     EdittableComponent,
     ListtablesComponent,
     EditrestaurantComponent,
-    ListrestaurantComponent
+    DisplayrestaurantComponent,
+    AddrestaurantComponent,
+    ListmenusComponent,
+    WaitlistComponent,
+    SelectrestaurantComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ItemService} from '../../shared/services/item.service';
 import {CategoryService} from '../../shared/services/category.service';
 import {FileUploadService} from "../../shared/services/fileupload.service";
+import {RestaurantService} from "../../shared/services/restaurant.service";
+import {GlobalutilService} from "../../shared/services/globalutil.service";
 
 @Component({
   selector: 'app-edititem',
@@ -18,34 +20,41 @@ export class EdititemComponent implements OnInit {
 
   item$: Observable<Item>;
   itemid: number;
+  menuId: number;
+  restaurantId: number;
   categories$: Observable<Category[]>;
   selectedFiles: FileList;
   currentUpload: FileUpload;
   public imagePath;
   imgURL: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private itemService: ItemService, private categoryService: CategoryService, private fileUploadService: FileUploadService) { }
+  constructor(private route: ActivatedRoute, private router: Router,  private globalUtilService: GlobalutilService,private itemService: ItemService, private categoryService: CategoryService, private fileUploadService: FileUploadService) { }
 
   ngOnInit() {
+
+    this.restaurantId = this.globalUtilService.getSessionRestaurantId();
     // Subscribed
     this.route.paramMap.subscribe(params => {
       this.itemid = + params.get('id');
+      this.menuId = + params.get('menuId');
       console.log('itemid ' + this.itemid);
+      console.log('menuId ' + this.menuId);
       this.item$ = this.itemService.readItem(this.itemid);
     });
-    this.categories$ =  this.categoryService.readCategories(1);
+
+    this.categories$ =  this.categoryService.readCategories(this.restaurantId);
     this.categories$.subscribe( data => console.log(data));
   }
 
   saveUpdatedItem(updateditem: Item): void {
     let itemMenu = new Menu();
-    itemMenu.id = 2;
+    itemMenu.id = this.menuId;
     updateditem.menu = itemMenu;
     console.log(updateditem);
     this.itemService.updateItem(updateditem)
          .subscribe( data => {
            alert('Menu Item updated successfully.');
-           this.router.navigate(['/menu']);
+           this.router.navigate(['/editmenuitems', this.menuId]);
          });
   }
 
@@ -64,8 +73,8 @@ export class EdititemComponent implements OnInit {
     let file = this.selectedFiles.item(0)
     this.currentUpload = new FileUpload(file);
     this.currentUpload.name = this.currentUpload.file.name;
-    this.currentUpload.restaurantId = 1;
-    this.currentUpload.menuId = 1;
+    this.currentUpload.restaurantId = this.restaurantId;
+    this.currentUpload.menuId = this.menuId;
     return this.fileUploadService.pushUpload(this.currentUpload);
   }
 

@@ -4,6 +4,8 @@ import {AngularFireAuth } from "angularfire2/auth";
 import {AuthInfo} from "./auth-info";
 import {Router} from "@angular/router";
 import * as firebase from 'firebase/app';
+import {map, take, tap} from "rxjs/operators";
+import {GlobalutilService} from "../services/globalutil.service";
 
 
 @Injectable({
@@ -11,12 +13,14 @@ import * as firebase from 'firebase/app';
 })
 export class AuthService {
 
-  static UNKNOWN_USER = new AuthInfo(null);
+  static UNKNOWN_USER = new AuthInfo(null, null);
 
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
+  storageAuthInfo: AuthInfo;
 
 
-  constructor(private afAuth: AngularFireAuth, private router:Router) {
+
+    constructor(private afAuth: AngularFireAuth, private router:Router,  private globalutilService:GlobalutilService) {
 
   }
 
@@ -41,9 +45,12 @@ export class AuthService {
 
     promise
         .then(res => {
-              const authInfo = new AuthInfo(this.afAuth.auth.currentUser.uid);
+              let currentUser = this.afAuth.auth.currentUser;
+              console.log(currentUser);
+              const authInfo = new AuthInfo(currentUser.uid,currentUser.email );
               this.authInfo$.next(authInfo);
-              subject.next(res);
+              sessionStorage.setItem("currentUser", JSON.stringify(authInfo));
+              subject.next(authInfo);
               subject.complete();
             },
             err => {
@@ -59,8 +66,30 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
     this.authInfo$.next(AuthService.UNKNOWN_USER);
-    this.router.navigate(['/home']);
+      sessionStorage.removeItem("currentUser");
+      this.globalutilService.restaurantId = "";
+      this.router.navigate(['/login']);
 
+  }
+
+  getUserUid():Observable<string>{
+      var currentUser = sessionStorage.getItem("currentUser");
+      if(currentUser){
+          this.storageAuthInfo = JSON.parse(currentUser);
+          return Observable.of(this.storageAuthInfo.$uid);
+      }else {
+          return this.authInfo$.pipe(map(data => data.$uid));
+      }
+  }
+
+  getUserEmail():Observable<string>{
+    var currentUser = sessionStorage.getItem("currentUser");
+    if(currentUser){
+        this.storageAuthInfo = JSON.parse(currentUser);
+        return Observable.of(this.storageAuthInfo.email);
+    }else {
+        return this.authInfo$.pipe(map(data => data.email));
+    }
   }
 
 }

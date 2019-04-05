@@ -4,6 +4,9 @@ import {Restaurant} from '../../shared/models/restaurant';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../shared/services/category.service';
 import {Observable} from 'rxjs';
+import {GlobalutilService} from "../../shared/services/globalutil.service";
+import {MenuService} from "../../shared/services/menu.service";
+import {Menu} from "../../shared/models/menu";
 
 @Component({
   selector: 'app-editcategory',
@@ -15,7 +18,7 @@ export class EditcategoryComponent implements OnInit {
   category$: Observable<Category>;
   categoryId: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) { }
+  constructor(private route: ActivatedRoute, private router: Router,private globalutilService: GlobalutilService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -26,7 +29,7 @@ export class EditcategoryComponent implements OnInit {
   }
   updateCategory(udpatedCategory: Category): void {
     let categoryRestaurant = new Restaurant();
-    categoryRestaurant.id = 1;
+    categoryRestaurant.id = this.globalutilService.getSessionRestaurantId();
     udpatedCategory.restaurant = categoryRestaurant;
     console.log(udpatedCategory);
     this.categoryService.updateCategory(udpatedCategory)
@@ -35,4 +38,5 @@ export class EditcategoryComponent implements OnInit {
           this.router.navigate(['/category']);
         });
   }
+
 }

@@ -35,11 +35,9 @@ export class RegisterComponent  {
 
     this.authService.signUp(val.email, val.password)
         .subscribe(
-            () => {
-              alert('User created successfully !');
-              this.router.navigateByUrl('/home');
-            },
-            err => alert(err)
+
+              authInfo => {console.log(authInfo);alert('User created successfully !');this.router.navigate(['/dashboard'])},
+              err => alert(err)
         );
   }
 

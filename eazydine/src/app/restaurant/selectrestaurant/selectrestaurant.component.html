@@ -1,0 +1,32 @@
+<h4>Select Restaurant</h4>
+
+
+<div class="form-controls">
+  <form class="form-inline">
+    <div class="form-group">
+      <button class="btn btn-primary add-menu-btn" type="button" routerLink="/addrestaurant">Add Restaurant</button>
+    </div>
+  </form>
+</div>
+
+
+<table class="table table-striped table-list">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Tagline</th>
+    <th scope="col">City</th>
+    <th scope="col">ZipCode</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let restaurant of (restaurant$ | async)">
+    <th scope="row"> {{restaurant.name}}</th>
+    <td> {{restaurant.tagline}}</td>
+    <td> {{restaurant.city}}</td>
+    <td> {{restaurant.zipcode}}</td>
+    <td><a [routerLink]="" (click)="selectRestaurant(restaurant.id)">Manage</a> | <a [routerLink]="['/editrestaurant', restaurant.id]">Edit</a> | <a (click)="deleteRestaurant(restaurant.id,restaurant.firebaseId)" [routerLink]="">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
