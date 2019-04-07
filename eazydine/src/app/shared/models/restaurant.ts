@@ -26,6 +26,7 @@ export class Restaurant {
     public zipcode: number;
     public allowpreorder: boolean;
     public avgprice : number;
+    public restaurantbgimage : string;
 
 }
 
@@ -52,6 +53,7 @@ export class RestaurantAdapter implements Adapter<Restaurant> {
         restaurantmodel.uuid = item.uuid;
         restaurantmodel.allowpreorder = item.allowpreorder;
         restaurantmodel.avgprice = item.avgprice;
+        restaurantmodel.restaurantbgimage = item.restaurantbgimage;
         return restaurantmodel;
     }
 }

@@ -33,6 +33,13 @@ header {
 	display: flex;
 	min-height: calc(100vh - 72px);
 }
+
+
+.table-striped .img-fluid {
+	max-width: 600px;
+	max-height: 450px;
+}
+
 .table-list .img-fluid {
 	max-width: 200px;
 	max-height: 150px;

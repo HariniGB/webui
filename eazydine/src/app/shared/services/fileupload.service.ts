@@ -27,4 +27,17 @@ export class FileUploadService {
         })
     );
   }
+
+    pushRestBgImageUpload(upload: FileUpload) : Observable<any> {
+        const filePath = this.basePath +'/' + 'backgroundimages' + '/'+ upload.file.name;
+        const task = this.afStorage.upload(filePath, upload.file);
+        const fileRef = this.afStorage.ref(filePath);
+        return <Observable<any>>task.snapshotChanges().pipe(
+            last(),
+            mergeMap(() => {
+                const url = fileRef.getDownloadURL();
+                return url;
+            })
+        );
+    }
 }

@@ -8,6 +8,8 @@ import {GlobalutilService} from "../../shared/services/globalutil.service";
 import {Firebaserestaurant} from "../../shared/models/firebase/firebaserestaurant";
 import {AuthService} from "../../shared/security/auth.service";
 import {Observable} from "rxjs";
+import {FileUpload} from "../../shared/models/fileupload";
+import {FileUploadService} from "../../shared/services/fileupload.service";
 
 @Component({
   selector: 'app-addrestaurant',
@@ -16,12 +18,16 @@ import {Observable} from "rxjs";
 })
 export class AddrestaurantComponent implements OnInit {
 
-  constructor(private router: Router, private globalUtilService: GlobalutilService, private authService: AuthService, private restaurantService: RestaurantService) { }
+  constructor(private router: Router, private globalUtilService: GlobalutilService, private authService: AuthService, private restaurantService: RestaurantService,private fileUploadService: FileUploadService) { }
   restaurant: Restaurant = new Restaurant();
   firebaserestaurant: Firebaserestaurant = new Firebaserestaurant();
   firebaseRestaurantId : string;
   uuid : string;
   createdRestaurant$ : Observable<Restaurant>;
+  selectedFiles: FileList;
+  currentUpload: FileUpload;
+  imgURL: any;
+  imagePath: any;
 
   ngOnInit() {
     this.authService.getUserUid().subscribe(data => {
@@ -29,6 +35,16 @@ export class AddrestaurantComponent implements OnInit {
     });
   }
 
+  createAllRestDetails() : void{
+    if(this.selectedFiles) {
+      this.upload().subscribe(downloadURL => {
+        this.restaurant.restaurantbgimage = downloadURL;
+        this.createRestaurant();
+      })
+    }else {
+      this.createRestaurant();
+    }
+  }
 
   createRestaurant(): void {
 
@@ -62,5 +78,22 @@ export class AddrestaurantComponent implements OnInit {
         });*/
     }
 
-    log(event) { console.log(event.target.checked); }
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+
+    var reader = new FileReader();
+    this.imagePath = this.selectedFiles.item(0);
+    reader.readAsDataURL(this.selectedFiles.item(0));
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
+  }
+
+  upload() {
+    let file = this.selectedFiles.item(0)
+    this.currentUpload = new FileUpload(file);
+    this.currentUpload.name = this.currentUpload.file.name;
+    return this.fileUploadService.pushRestBgImageUpload(this.currentUpload);
+  }
+  log(event) { console.log(event.target.checked); }
 }

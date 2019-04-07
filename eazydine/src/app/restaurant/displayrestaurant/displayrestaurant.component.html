@@ -27,6 +27,12 @@
       <th scope="row">Cuisine</th>
       <td>{{displayedrestaurant.cuisine}}</td>
     </tr>
+
+    <tr>
+      <th scope="row">Cover Image </th>
+      <td><img src="{{displayedrestaurant.restaurantbgimage}}" onerror='this.style.display = "none"' class="img-fluid"/></td>
+    </tr>
+
     <tr>
       <th scope="row">Menus</th>
       <td><a [routerLink]="['/menu']">Manage Menus</a></td>

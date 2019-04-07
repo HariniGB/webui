@@ -17,6 +17,12 @@
     </div>
 
     <div class="form-group">
+      <label for="inputFile">Add Image</label>
+      <input type="file" name="inputFile" id="inputFile" (change)="detectFiles($event)" class="form-control"/>
+      <img [src]="imgURL" height="200" *ngIf="imgURL" >
+    </div>
+
+    <div class="form-group">
       <div class="form-check">
         <input type="checkbox" class="form-check-input" [attr.id]="restaurant.allowpreorder" [(ngModel)]="restaurant.allowpreorder" (change)="log($event)" [checked]="restaurant.allowpreorder" name="inputAllowPreorder" id="inputAllowPreorder"/>
         <label class="form-check-label" for="inputAllowPreorder">Allow Pre-order</label>
@@ -69,7 +75,7 @@
       <input  [(ngModel)]="restaurant.country" id="inputCountry"  name="inputCountry" type="text" class="form-control" placeholder="Enter restaurant country" step="1" min="2" max="10"/>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="createRestaurant()">Save Restaurant</button>
+    <button type="submit" class="btn btn-primary" (click)="createAllRestDetails()">Save Restaurant</button>
 
   </form>
 </div>
