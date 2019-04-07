@@ -15,12 +15,13 @@ export class AuthGuard implements CanActivate {
 
     storageAuthInfo: AuthInfo;
 
-    canActivate(route:ActivatedRouteSnapshot,
+   /* canActivate(route:ActivatedRouteSnapshot,
                 state:RouterStateSnapshot):Observable<boolean> {
 
        var currentUser = sessionStorage.getItem("currentUser");
         if(currentUser){
             this.storageAuthInfo =  JSON.parse(currentUser);
+            this.authService.authInfo$.next(this.storageAuthInfo)
             return Observable.of(true);
         }else {
             return this.authService.authInfo$.pipe(
@@ -34,5 +35,20 @@ export class AuthGuard implements CanActivate {
         }
 
     }
+*/
+
+    canActivate(route:ActivatedRouteSnapshot,
+                state:RouterStateSnapshot):Observable<boolean> {
+
+            return this.authService.authInfo$.pipe(
+                map(authInfo => authInfo.isLoggedIn()),
+                take(1),
+                tap(allowed => {
+                    if (!allowed) {
+                        this.router.navigate(['/login']);
+                    }
+                }),);
+        }
+
 
 }

@@ -18,12 +18,14 @@ export class AuthService {
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
   storageAuthInfo: AuthInfo;
 
-
-
     constructor(private afAuth: AngularFireAuth, private router:Router,  private globalutilService:GlobalutilService) {
-
-  }
-
+        var currentUser = sessionStorage.getItem("currentUser");
+        if (currentUser) {
+            this.storageAuthInfo = JSON.parse(currentUser);
+        }else{
+            this.storageAuthInfo =AuthService.UNKNOWN_USER;
+        }
+    }
   login(email, password):Observable<AuthInfo> {
     return this.fromFirebaseAuthPromise(this.afAuth.auth.signInWithEmailAndPassword(email, password));
   }
@@ -65,11 +67,11 @@ export class AuthService {
 
   logout() {
     this.afAuth.auth.signOut();
-    this.authInfo$.next(AuthService.UNKNOWN_USER);
       sessionStorage.removeItem("currentUser");
+      sessionStorage.removeItem("restaurantId");
       this.globalutilService.restaurantId = "";
+      this.authInfo$.next(AuthService.UNKNOWN_USER);
       this.router.navigate(['/login']);
-
   }
 
   getUserUid():Observable<string>{

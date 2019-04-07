@@ -1,13 +1,20 @@
 <header>
-  <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <ng-container>
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </ng-container>
+
   <div class="company-name"><a href="#" routerLink="/dashboard">EazyDine</a></div>
-  <div class="header-menu dropdown">
-    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{uemail$}}</button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" [routerLink]="['/selectrestaurant']">Select Restaurant</a>
-      <a class="dropdown-item" [routerLink]="" (click)="logout()">Logout</a>
+  <ng-container *ngIf="(authInfo$ | async)?.isLoggedIn()">
+    <div class="header-menu dropdown">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{uemail}}</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" [routerLink]="['/selectrestaurant']">Select Restaurant</a>
+        <a class="dropdown-item" [routerLink]="" (click)="logout()">Logout</a>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+
 </header>

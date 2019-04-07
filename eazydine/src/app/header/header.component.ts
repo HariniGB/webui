@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../shared/security/auth.service";
+import {BehaviorSubject, Observable} from "rxjs";
+import {AuthInfo} from "../shared/security/auth-info";
 
 @Component({
   selector: 'app-header',
@@ -8,22 +10,35 @@ import {AuthService} from "../shared/security/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService : AuthService) { }
-  uuid$ : string;
-  uemail$ : string;
+  uuid$ : Observable<string>;
+  uemail$ : Observable<string>;
+  uuid: string
+  uemail: string;
+  authInfo$ : BehaviorSubject<AuthInfo>
+
+  constructor(private authService : AuthService) {
+    this.authInfo$ = this.authService.authInfo$;
+  }
+
 
   ngOnInit() {
     this.authService.getUserUid().subscribe(data => {
-      this.uuid$ = data;
+      this.uuid = data;
     });
     this.authService.getUserEmail().subscribe(data => {
-      this.uemail$ = data;
+      this.uemail = data;
+    });
+
+    this.authInfo$.subscribe(data => {
+      this.uemail = data.email;
+      this.uuid = data.$uid;
+
     });
   }
 
   logout(){
-    this.uuid$="";
-    this.uemail$="";
+    this.uuid="";
+    this.uemail="";
     this.authService.logout();
   }
 

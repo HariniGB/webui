@@ -1,3 +1,6 @@
+import {Observable} from "rxjs";
+import {map, take, tap} from "rxjs/operators";
+
 export class AuthInfo {
 
     constructor(
@@ -10,7 +13,9 @@ export class AuthInfo {
 
 
     isLoggedIn() {
-        return !!this.$uid;
+
+            return !!this.$uid;
+
     }
 
 }
