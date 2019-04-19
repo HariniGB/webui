@@ -1,164 +1,51 @@
 <h4>Waitlist</h4>
 <h5>Click user to assign table</h5>
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">Add user to waitlist</button>
+<!--
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>-->
 
 <div class="visitor-cards">
-  <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-    <div class="visitor-card">
-    <div class="visitor-content">
-      <div class="visitor-info">
-        <h3>John Doe</h3>
-        <div>john.doe@email.com</div>
-      </div>
-      <div class="visitor-avatar">
-        <img src="image/1.jpg" alt="User Avatar" />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-primary" type="button"  data-toggle="modal"  data-target="#exampleModal" aria-haspopup="true" aria-expanded="false">
-        Assign Table
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <h6 class="dropdown-header">Available Tables</h6>
-        <button class="dropdown-item" type="button">Table 1 <span>(6)</span></button>
-        <button class="dropdown-item" type="button">Table 4 <span>(8)</span></button>
-        <button class="dropdown-item" type="button">Table 9 <span>(4)</span></button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Cancel Assignment</a>
+  <ng-container *ngFor="let waitlist of (waitlist$ | async)">
+    <ng-container *ngIf="waitlist.status == 'Waiting'">
+    <a data-toggle="modal" data-target="#exampleModalCenter"  (click)="selectUserId(waitlist)">
+      <div class="visitor-card">
+      <div class="visitor-content">
+        <div class="visitor-info">
+          <h3>{{waitlist.userId}}</h3>
+          <div>{{waitlist.numSeats?waitlist.numSeats+" seats":"Seats not mentioned"}}</div>
+        </div>
+        <div class="visitor-avatar">
+          <img src="assets/images/0.svg" alt="User Avatar" />
+        </div>
       </div>
     </div>
-  </div>
-  </a>
-  <div class="visitor-card">
-    <div class="visitor-content">
-      <div class="visitor-info">
-        <h3>John Doe</h3>
-        <div>john.doe@email.com</div>
-      </div>
-      <div class="visitor-avatar">
-        <img src="image/0.svg" alt="User Avatar" />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Assign Table
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <h6 class="dropdown-header">Available Tables</h6>
-        <button class="dropdown-item" type="button">Table 1 <span>(6)</span></button>
-        <button class="dropdown-item" type="button">Table 4 <span>(8)</span></button>
-        <button class="dropdown-item" type="button">Table 9 <span>(4)</span></button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Cancel Assignment</a>
-      </div>
-    </div>
-  </div>
-  <div class="visitor-card">
-    <div class="visitor-content">
-      <div class="visitor-info">
-        <h3>John Doe</h3>
-        <div>john.doe@email.com</div>
-      </div>
-      <div class="visitor-avatar">
-        <img src="image/0.svg" alt="User Avatar" />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Assign Table
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <h6 class="dropdown-header">Available Tables</h6>
-        <button class="dropdown-item" type="button">Table 1 <span>(6)</span></button>
-        <button class="dropdown-item" type="button">Table 4 <span>(8)</span></button>
-        <button class="dropdown-item" type="button">Table 9 <span>(4)</span></button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Any other link</a>
-      </div>
-    </div>
-  </div>
-  <div class="visitor-card">
-    <div class="visitor-content">
-      <div class="visitor-info">
-        <h3>John Doe</h3>
-        <div>john.doe@email.com</div>
-      </div>
-      <div class="visitor-avatar">
-        <img src="image/0.svg" alt="User Avatar" />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Assign Table
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <h6 class="dropdown-header">Available Tables</h6>
-        <button class="dropdown-item" type="button">Table 1 <span>(6)</span></button>
-        <button class="dropdown-item" type="button">Table 4 <span>(8)</span></button>
-        <button class="dropdown-item" type="button">Table 9 <span>(4)</span></button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Any other link</a>
-      </div>
-    </div>
-  </div>
-  <div class="visitor-card">
-    <div class="visitor-content">
-      <div class="visitor-info">
-        <h3>John Doe</h3>
-        <div>john.doe@email.com</div>
-      </div>
-      <div class="visitor-avatar">
-        <img src="image/0.svg" alt="User Avatar" />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Assign Table
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <h6 class="dropdown-header">Available Tables</h6>
-        <button class="dropdown-item" type="button">Table 1 <span>(6)</span></button>
-        <button class="dropdown-item" type="button">Table 4 <span>(8)</span></button>
-        <button class="dropdown-item" type="button">Table 9 <span>(4)</span></button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Any other link</a>
-      </div>
-    </div>
-  </div>
-  <div class="visitor-card">
-    <div class="visitor-content">
-      <div class="visitor-info">
-        <h3>John Doe</h3>
-        <div>john.doe@email.com</div>
-      </div>
-      <div class="visitor-avatar">
-        <img src="image/0.svg" alt="User Avatar" />
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Assign Table
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <h6 class="dropdown-header">Available Tables</h6>
-        <button class="dropdown-item" type="button">Table 1 <span>(6)</span></button>
-        <button class="dropdown-item" type="button">Table 4 <span>(8)</span></button>
-        <button class="dropdown-item" type="button">Table 9 <span>(4)</span></button>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Any other link</a>
-      </div>
-    </div>
-  </div>
+    </a>
+    </ng-container>
+  </ng-container>
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="inputTables">Tables</label>
+          <select class="form-control" id="inputTables"  name="inputTables">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="assignTable()">Assign Table</button>
+      </form>
+  </div>
+</div>-->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Assign Table to User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -166,18 +53,48 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="inputTables">Tables</label>
+            <select class="form-control" id="inputTables" [(ngModel)]="firebaseTable" name="inputTables">
+              <ng-container  *ngFor="let table of (tables$ | async); let i = index; let isFirst = first;">
+                <option *ngIf="table.tablestatus=='Vacant'" [ngValue]="table"  [defaultSelected]="isFirst">{{table.tablenumber}}</option>
+              </ng-container>
+            </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="assignTable()">Assign Table</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserLongTitle">Add User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="inputUserId">Phone Number:</label>
+            <input [(ngModel)]="newWaitlistUser.userId" placeholder="Enter the phonenumber" name="inputUserId" class="form-control" id="inputUserId">
+          </div>
+
+          <div class="form-group">
+            <label for="inputDescription">Number of seats:</label>
+            <input [(ngModel)]="newWaitlistUser.numSeats" type="number" placeholder="Enter number of seats" name="inputDescription" class="form-control" id="inputDescription" step="1" min="0" max="10">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="addWaitListUser()">Add</button>
       </div>
     </div>
   </div>

@@ -36,7 +36,10 @@ export class RegisterComponent  {
     this.authService.signUp(val.email, val.password)
         .subscribe(
 
-              authInfo => {console.log(authInfo);alert('User created successfully !');this.router.navigate(['/dashboard'])},
+              authInfo => {
+                console.log(authInfo);alert('User created successfully !');
+                this.router.navigate(['/login'])
+              },
               err => alert(err)
         );
   }

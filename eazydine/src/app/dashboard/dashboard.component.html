@@ -1,45 +1,55 @@
 <h4>Dashboard</h4>
 <div class="card-deck text-center">
-  <div class="card">
-    <div class="card-header">Waitlist</div>
-    <div class="card-body">
-      <strong>15</strong>
-      <span>Users</span>
+  <ng-container *ngIf="(restaurant$ | async) as restaurant;">
+    <div class="card">
+      <div class="card-header"><a href="#" class="nav-link" routerLink="/displayrestaurant">Restaurant Profile</a></div>
+      <div class="card-body">
+        <strong>{{restaurant.name}}</strong>
+        <span>Current Restaurant</span>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Table Orders</div>
-    <div class="card-body">
-      <strong>12</strong>
-      <span>Total occupied</span>
+    <div class="card">
+      <div class="card-header"><a href="#" class="nav-link" routerLink="/liveupdate">Table Status</a></div>
+      <div class="card-body">
+        <strong>{{restaurant.numoftables}}</strong>
+        <span>Total Tables</span>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Pre Orders</div>
-    <div class="card-body">
-      <strong>12</strong>
-      <span>Total occupied</span>
+    <div class="card">
+      <div class="card-header"><a href="#" class="nav-link" routerLink="/menu">Menu Management</a></div>
+      <div class="card-body">
+        <strong>{{restaurant.menus.length}}</strong>
+        <span>Total Menus</span>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Menu Management</div>
-    <div class="card-body">
-      <strong>2</strong>
-      <span>Total Menus</span>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Menu Management</div>
-    <div class="card-body">
-      <strong>35</strong>
-      <span>Total Items</span>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Gallery</div>
-    <div class="card-body">
-      <strong>20</strong>
-      <span>Total Gallery</span>
-    </div>
-  </div>
+    <ng-container *ngIf="(categories$ | async) as categories">
+      <div class="card">
+        <div class="card-header"><a href="#" class="nav-link" routerLink="/category">Category</a></div>
+        <div class="card-body">
+          <strong>{{categories.length}}</strong>
+          <span>Total Categories</span>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(waitlist$ | async) as waitlists">
+      <div class="card">
+        <div class="card-header"><a href="#" class="nav-link" routerLink="/waitlist">Waitlist Management</a></div>
+        <div class="card-body">
+          <strong>{{waitlists.length}}</strong>
+          <span>Total users in waitlist</span>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(alluserrestaurants$ | async) as alluserrestaurants">
+      <div class="card">
+        <div class="card-header"><a href="#" class="nav-link" routerLink="/selectrestaurant">Switch/Add Restaurants</a></div>
+        <div class="card-body">
+          <strong>{{alluserrestaurants.length}}</strong>
+          <span>Total Restaurants</span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
 </div>
+
+

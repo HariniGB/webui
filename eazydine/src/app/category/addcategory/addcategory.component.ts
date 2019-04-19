@@ -38,4 +38,6 @@ export class AddcategoryComponent implements OnInit {
         });
   };
 
+
+
 }

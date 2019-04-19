@@ -154,12 +154,13 @@ header {
 	border-radius: 5px;
 	color: #fff;
 }
-.order-status.in-progress {
+.order-status.Occupied {
 	background: #17a2b8;
 }
-.order-status.served {
+.order-status.Vacant {
 	background: #28a745;
 }
+
 .order-total {
 	font-size: 24px;
 	font-weight: bold;

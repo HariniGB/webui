@@ -9,6 +9,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 import {Table} from "../models/table";
 import {Firebasetable} from "../models/firebase/firebasetable";
 import {Menu} from "../models/menu";
+import {Firebasewaitlist} from "../models/firebase/firebasewaitlist";
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class RestaurantService {
        var table = new Firebasetable();
        table.tablenumber = i;
        table.tablestatus = 'Vacant';
-      restaurant.tables[i] = table;
+       restaurant.tables[i] = table;
     }
     console.log(restaurant);
     return this.db.database.ref('/restaurants').child(restaurant.firebaseId).set(restaurant);
@@ -80,6 +81,18 @@ export class RestaurantService {
     return this.db.database.ref('/restaurants').child(restaurant.firebaseId).set(restaurant);
   }
 
+  updateRestaurantTable(firebaseRestId : string,firebaseTable:Firebasetable) :Promise<any>{
+      return this.db.object(this.firebaseRestaurantsPath+"/"+firebaseRestId+"/tables/"+firebaseTable.tablenumber).set(firebaseTable);
+  }
+
+  clearRestaurantTable(firebaseRestId : string,firebaseTable:Firebasetable) :Promise<any>{
+    let tablenumber = firebaseTable.tablenumber;
+    firebaseTable = new Firebasetable();
+    firebaseTable.tablestatus = 'Vacant';
+    firebaseTable.tablenumber = tablenumber;
+    return this.db.object(this.firebaseRestaurantsPath+"/"+firebaseRestId+"/tables/"+tablenumber).set(firebaseTable);
+  }
+
   readFireBaseRestaurant(firebaseId : string): AngularFireObject<any>{
     return this.db.object('/restaurants/'+firebaseId);
   }
@@ -94,14 +107,6 @@ export class RestaurantService {
     return this.db.list(this.firebaseAdminsPath.concat("/", useruid))
   }
 
-/*  listAllMenus(useruid : string): Observable<Restaurant[]> {
-    const url = `${this.restaurantbaseUrl}`+"?uuid="+useruid ;
-    console.log("RestaurantService url :"+ url)
-    return this.http.get(url).pipe(
-        // Adapt each item in the raw data array
-        map((data: any[]) => data),catchError((e:Response)=> throwError(e))).pipe(
-        map((item:any[]) => {item.map(res => this.adapter.adapt(res))}), catchError((e:Response)=> throwError(e)))
-  }*/
 
   listAllUserRestaurants(useruid : string): Observable<Restaurant[]> {
     const url = `${this.restaurantbaseUrl}`+"?uuid="+useruid ;
@@ -127,6 +132,10 @@ export class RestaurantService {
 
   deleteFireBaseRestaurant(firebaseId: string): Promise<any> {
     return this.db.database.ref(this.firebaseRestaurantsPath).child(firebaseId).remove()
+  }
+
+  readFireBaseRestaurantTables(firebaseId : string): AngularFireList<Firebasetable>{
+      return this.db.list('/restaurants/'+firebaseId+'/tables');
   }
 
 }

@@ -1,9 +1,4 @@
-import {Injectable} from '@angular/core';
-import {Adapter} from '../../adapter/adapter';
-import {Menu} from '../menu';
-import {Category} from '../category';
-import {Table} from '../table';
-import {Firebasetable} from "./firebasetable";
+import {Firebasewaitlist} from "./firebasewaitlist";
 
 export class Firebaserestaurant {
     constructor() {

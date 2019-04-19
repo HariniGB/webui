@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
                                 this.router.navigate(['/selectrestaurant'])
                             }else if(data.length==1){
                                 this.globalutilService.setSessionRestaurantId(data[0].id);
-                                this.router.navigate(['/displayrestaurant'])
+                                this.router.navigate(['/dashboard'])
                             }else{
                                 this.router.navigate(['/addrestaurant'])
                             }

@@ -1,93 +1,99 @@
-<h4>Live Update</h4>
+<h4>Live Update - Table Status</h4>
 <div class="card-deck live-updates-cards text-center">
-  <div class="card">
-    <div class="card-body">
-      <strong>Table 13</strong>
-      <div class="order-title">Order No. 101</div>
-      <ul>
-        <li><span>Item 1</span><span>1</span></li>
-        <li><span>Item 2</span><span>1</span></li>
-        <li><span>Item 3</span><span>2</span></li>
-        <li><span>Item 4</span><span>1</span></li>
-        <li><span>Item 5</span><span>2</span></li>
-      </ul>
-      <div class="order-status in-progress">In Progress</div>
-      <div class="order-total">Total: $19.78</div>
+  <ng-container *ngFor="let table of (tables$ | async)">
+    <div class="card">
+      <div class="card-header">
+        <strong>Table {{table.tablenumber}}</strong>
+      </div>
+      <div class="card-body">
+        <ng-container *ngIf="table.tablestatus!='Vacant'">
+          <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderDetails" (click)="selectTable(table)">Order Details</button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#clearTable" (click)="selectTable(table)">Clear Table</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="card-footer">
+        <div class="order-status {{table.tablestatus}}">{{table.tablestatus}}</div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="modal fade" id="orderDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserLongTitle">Order Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-deck live-updates-cards text-center">
+          <ng-container *ngFor="let order of (selectedUserOrders$ | async) as orders; let i =index;">
+            <div class="card">
+              <ng-container *ngIf="order.restaurantId == restaurantId && order.orderStatus!= 'Cart'">
+                <div class="card-header">
+                  <div class="order-title">Order No. {{i+1}}</div>
+                </div>
+                <ng-container *ngIf="order.itemList">
+                  <div class="card-body">
+                    <ul>
+                      <li *ngFor="let item of order.itemList"><span>{{item.name}}</span><span>{{item.quantity}}</span></li>
+                    </ul>
+                    <div class="order-status {{order.orderStatus}}">{{order.orderStatus}}</div>
+                    <div class="order-total">Total: {{order.totalPrice}}</div>
+                  </div>
+                </ng-container>
+                <div class="card-footer">
+                  <form>
+                    <div class="form-group">
+                      <label for="inputOrderStatus">Update Status</label>
+                      <select class="form-control" id="inputOrderStatus" [(ngModel)]="order.orderStatus" name="inputOrderStatus">
+                        <option [defaultSelected]="order.orderStatus=='Placed'">Placed</option>
+                        <option [defaultSelected]="order.orderStatus=='Preparing'">Preparing</option>
+                        <option [defaultSelected]="order.orderStatus=='Served'">Served</option>
+                        <option [defaultSelected]="order.orderStatus=='Paid'">Paid</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="updateOrderStatus(order)">Save</button>
+                  </form>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="order-total">Total Cost :</div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
+        <button type="submit" class="btn btn-primary" (click)="updateAllOrderStatus('Paid')">Mark All as Paid</button>
+      </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-body">
-      <strong>Table 22</strong>
-      <div class="order-title">Order No. 171</div>
-      <ul>
-        <li><span>Item 1</span><span>1</span></li>
-        <li><span>Item 2</span><span>1</span></li>
-        <li><span>Item 3</span><span>2</span></li>
-        <li><span>Item 4</span><span>1</span></li>
-        <li><span>Item 5</span><span>2</span></li>
-      </ul>
-      <div class="order-status">Ordering</div>
-      <div class="order-total">Total: $34.78</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <strong>Table 34</strong>
-      <div class="order-title">Order No. 123</div>
-      <ul>
-        <li><span>Item 1</span><span>1</span></li>
-        <li><span>Item 2</span><span>1</span></li>
-        <li><span>Item 3</span><span>2</span></li>
-        <li><span>Item 4</span><span>1</span></li>
-        <li><span>Item 5</span><span>2</span></li>
-      </ul>
-      <div class="order-status served">Served</div>
-      <div class="order-total">Total: $66.78</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <strong>Table 7</strong>
-      <div class="order-title">Order No. 155</div>
-      <ul>
-        <li><span>Item 1</span><span>1</span></li>
-        <li><span>Item 2</span><span>1</span></li>
-        <li><span>Item 3</span><span>2</span></li>
-        <li><span>Item 4</span><span>1</span></li>
-        <li><span>Item 5</span><span>2</span></li>
-      </ul>
-      <div class="order-status served">Served</div>
-      <div class="order-total">Total: $27.78</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <strong>Table 22</strong>
-      <div class="order-title">Order No. 167</div>
-      <ul>
-        <li><span>Item 1</span><span>1</span></li>
-        <li><span>Item 2</span><span>1</span></li>
-        <li><span>Item 3</span><span>2</span></li>
-        <li><span>Item 4</span><span>1</span></li>
-        <li><span>Item 5</span><span>2</span></li>
-      </ul>
-      <div class="order-status in-progress">In Progress</div>
-      <div class="order-total">Total: $34.78</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <strong>Table 39</strong>
-      <div class="order-title">Order No. 183</div>
-      <ul>
-        <li><span>Item 1</span><span>1</span></li>
-        <li><span>Item 2</span><span>1</span></li>
-        <li><span>Item 3</span><span>2</span></li>
-        <li><span>Item 4</span><span>1</span></li>
-        <li><span>Item 5</span><span>2</span></li>
-      </ul>
-      <div class="order-status served">Served</div>
-      <div class="order-total">Total: $66.78</div>
+</div>
+
+<div class="modal fade" id="clearTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="clearTableTitle">Clear Table</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p *ngIf="selectedTable"> Are you sure you want to clear all orders for Table {{selectedTable.tablenumber}}?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="clearTable()">Add</button>
+      </div>
     </div>
   </div>
 </div>

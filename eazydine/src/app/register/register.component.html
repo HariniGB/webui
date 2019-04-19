@@ -3,20 +3,25 @@
   <fieldset>
     <legend>Register</legend>
 
-    <div class="form-field">
-      <label>email:</label>
-      <input name="email" formControlName="email">
+    <div class="form-group" >
+      <label for="email">Email address</label>
+      <input type="email" name="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
-    <div class="form-field">
-      <label>Password:</label>
-      <input name="password" formControlName="password" type="password">
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" formControlName="password" id="password" name="password" placeholder="Password">
     </div>
-    <div class="form-field">
-      <label>Confirm Password:</label>
-      <input name="confirm" formControlName="confirm" type="password">
+
+    <div class="form-group">
+      <label for="password">Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirm" id="confirm" name="confirm" placeholder="Password">
     </div>
   </fieldset>
 
-  <button (click)="signUp()" [disabled]="!isPasswordMatch()">Create User</button>
-
+  <button (click)="signUp()" class="btn btn-primary" [disabled]="!isPasswordMatch()">Create User</button>
+  <div class="etc-login-form">
+    <p>Existing User? <a href="#" routerLink="/login">Login</a></p>
+  </div>
 </form>
