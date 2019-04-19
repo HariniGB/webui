@@ -47,7 +47,7 @@
                       <li *ngFor="let item of order.itemList"><span>{{item.name}}</span><span>{{item.quantity}}</span></li>
                     </ul>
                     <div class="order-status {{order.orderStatus}}">{{order.orderStatus}}</div>
-                    <div class="order-total">Total: {{order.totalPrice}}</div>
+                    <div class="order-total">Total: {{order.totalPrice.toFixed(2)}}</div>
                   </div>
                 </ng-container>
                 <div class="card-footer">
@@ -70,9 +70,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div class="order-total">Total Cost :</div>
+        <ng-container *ngIf="(selectedUserOrders$ | async) as orders;">
+          <div class="order-total">Total Cost : {{getTotal(orders).toFixed(2)}}</div>
+        </ng-container>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
-        <button type="submit" class="btn btn-primary" (click)="updateAllOrderStatus('Paid')">Mark All as Paid</button>
+        <!--<button type="submit" class="btn btn-primary" (click)="updateAllOrderStatus('Paid')">Mark All as Paid</button>-->
       </div>
     </div>
   </div>
@@ -91,8 +93,8 @@
         <p *ngIf="selectedTable"> Are you sure you want to clear all orders for Table {{selectedTable.tablenumber}}?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="clearTable()">Add</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="clearTable()">Clear</button>
       </div>
     </div>
   </div>

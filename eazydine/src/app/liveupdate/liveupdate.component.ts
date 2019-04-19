@@ -8,7 +8,7 @@ import {GlobalutilService} from "../shared/services/globalutil.service";
 import {UserService} from "../shared/services/user.service";
 import {RestaurantService} from "../shared/services/restaurant.service";
 import {WaitlistService} from "../shared/services/waitlist.service";
-import {Observable} from "rxjs";
+import {Observable,combineLatest} from "rxjs";
 import {Firebasetable} from "../shared/models/firebase/firebasetable";
 import {Firebasewaitlist} from "../shared/models/firebase/firebasewaitlist";
 import {Firebaseorder} from "../shared/models/firebase/firebaseorder";
@@ -61,13 +61,16 @@ export class LiveupdateComponent implements OnInit {
             .then(data => this.userStatusSerivce.resetUserStatus(this.selectedTable.userid)));
   }
 
-  updateAllOrderStatus(status : string){
+/*  updateAllOrderStatus(status : string){
     this.selectedUserOrders$.subscribe(orders => {
       for(let order of orders){
         this.userService.updateUserOrder(this.selectedTable.userid,status, order);
       }
+      return;
     });
-  }
+  }*/
+
+
 
   getUserOrderTotalPayable(): Observable<number> {
     return this.selectedUserOrders$
@@ -76,10 +79,12 @@ export class LiveupdateComponent implements OnInit {
         });
   }
 
-  getTotal(orders){
+  getTotal(orders):number{
     let total =0;
     for(let order of orders) {
-      total += order.totalPrice;
+      if(order.orderStatus!='Cart'){
+        total += order.totalPrice;
+      }
     }
     return total;
   }
