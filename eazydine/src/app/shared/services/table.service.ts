@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Table, TableAdapter} from '../models/table';
+import {GlobalutilService} from "./globalutil.service";
 
 
 @Injectable({
@@ -11,12 +12,14 @@ import {Table, TableAdapter} from '../models/table';
 
 export class TableService {
 
-  private baseUrl = 'http://localhost:8080/api/tables/';
-  private restaurantbaseUrl = 'http://localhost:8080/api/restaurants/';
+  private baseUrl = this.globalutilService.getBaseUrl() + '/api/tables/';
+  private restaurantbaseUrl = this.globalutilService.getBaseUrl() + 'api/restaurants/';
   // https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
   constructor(
       private http: HttpClient,
       private adapter: TableAdapter,
+      private globalutilService:GlobalutilService
+
   ) {}
 
   readTables(restaurantid: number): Observable<Table[]> {

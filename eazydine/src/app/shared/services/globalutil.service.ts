@@ -34,4 +34,9 @@ export class GlobalutilService {
   getFirebasePushKey():string{
     return this.db.createPushId();
   }
+
+  getBaseUrl():string{
+    return "http://eazydine-menu-service-lb-298016264.us-east-1.elb.amazonaws.com/";
+    //return "http://localhost:8080/"
+  }
 }

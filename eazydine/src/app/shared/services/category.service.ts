@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Category, CategoryAdapter} from '../models/category';
+import {GlobalutilService} from "./globalutil.service";
 
 
 @Injectable({
@@ -10,12 +11,13 @@ import {Category, CategoryAdapter} from '../models/category';
 })
 export class CategoryService {
 
-  private baseUrl = 'http://localhost:8080/api/categories/';
-  private restaurantbaseUrl = 'http://localhost:8080/api/restaurants/';
+  private baseUrl = this.globalutilService.getBaseUrl() +'api/categories/';
+  private restaurantbaseUrl = this.globalutilService.getBaseUrl() +'api/restaurants/';
   // https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
   constructor(
       private http: HttpClient,
       private adapter: CategoryAdapter,
+      private globalutilService:GlobalutilService
   ) {}
 
   readCategories(restaurantid: number): Observable<Category[]> {

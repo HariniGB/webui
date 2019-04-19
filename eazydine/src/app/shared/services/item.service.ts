@@ -3,17 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { Item, ItemAdapter } from '../models/item' ;
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import {GlobalutilService} from "./globalutil.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  private baseUrl = 'http://localhost:8080/api/items/';
+  private baseUrl = this.globalutilService.getBaseUrl() + '/api/items/';
   // https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
   constructor(
       private http: HttpClient,
       private adapter: ItemAdapter,
+      private globalutilService:GlobalutilService
   ) {}
 
   readItems(): Observable<Item[]> {

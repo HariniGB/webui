@@ -10,19 +10,22 @@ import {Table} from "../models/table";
 import {Firebasetable} from "../models/firebase/firebasetable";
 import {Menu} from "../models/menu";
 import {Firebasewaitlist} from "../models/firebase/firebasewaitlist";
+import {GlobalutilService} from "./globalutil.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
-  private restaurantbaseUrl = 'http://localhost:8080/api/restaurants/';
+  private restaurantbaseUrl = this.globalutilService.getBaseUrl() +'api/restaurants/';
   private firebaseAdminsPath = '/admins';
   private firebaseRestaurantsPath = '/restaurants';
   // https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
   constructor(
       private http: HttpClient,
       private adapter:  RestaurantAdapter,
-      private db: AngularFireDatabase
+      private db: AngularFireDatabase,
+      private globalutilService:GlobalutilService
+
   ) {}
   readRestaurant(restaurantId: number): Observable<Restaurant> {
     const url = `${this.restaurantbaseUrl}` + restaurantId;

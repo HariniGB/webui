@@ -21,7 +21,7 @@
   <tbody>
   <tr *ngFor="let category of (categories$ | async)">
     <th scope="row"> {{category.name}}</th>
-    <td> {{category.name}}</td>
+    <td> {{category.description}}</td>
     <td> {{category.rank}}</td>
     <td><a [routerLink]="['/editcategory', category.id]">Edit</a> | <a (click)="deleteCategory(category.id)" [routerLink]="">Delete</a></td>
   </tr>

@@ -10,19 +10,21 @@ import 'rxjs/add/operator/catch';
 import {Menu, MenuAdapter} from "../models/menu";
 import {Restaurant, RestaurantAdapter} from "../models/restaurant";
 import {Category} from "../models/category";
+import {GlobalutilService} from "./globalutil.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class MenuService {
 
-    private baseUrl = 'http://localhost:8080/api/menus/';
-    private restaurantbaseUrl = 'http://localhost:8080/api/restaurants/';
+    private baseUrl = this.globalutilService.getBaseUrl() + 'api/menus/';
+    private restaurantbaseUrl = this.globalutilService.getBaseUrl() + 'api/restaurants/';
 
     constructor(
         private http: HttpClient,
         private menuadapter: MenuAdapter,
         private restaurantadpater: RestaurantAdapter,
+        private globalutilService:GlobalutilService
     ){}
 
     getMenu(id: number): Observable<Menu> {
