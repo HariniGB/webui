@@ -12,8 +12,9 @@
       <div class="visitor-card">
       <div class="visitor-content">
         <div class="visitor-info">
-          <h3>{{waitlist.userId}}</h3>
-          <div>{{waitlist.numSeats?waitlist.numSeats+" seats":"Seats not mentioned"}}</div>
+          <h3>{{waitlist.userName}}</h3>
+          <h4>{{waitlist.numSeats?waitlist.numSeats+" seats":"Seats not mentioned"}}</h4>
+          <div>Phone: {{waitlist.userId}}</div>
         </div>
         <div class="visitor-avatar">
           <img src="assets/images/0.svg" alt="User Avatar" />
@@ -81,6 +82,11 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="form-group">
+            <label for="inputCustName">Name:</label>
+            <input [(ngModel)]="newWaitlistUser.userName" placeholder="Enter customer name" name="inputUserId" class="form-control" id="inputCustName">
+          </div>
+
           <div class="form-group">
             <label for="inputUserId">Phone Number:</label>
             <input [(ngModel)]="newWaitlistUser.userId" placeholder="Enter the phonenumber" name="inputUserId" class="form-control" id="inputUserId">

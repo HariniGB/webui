@@ -36,8 +36,8 @@
       <div class="modal-body">
         <div class="card-deck live-updates-cards text-center">
           <ng-container *ngFor="let order of (selectedUserOrders$ | async) as orders; let i =index;">
-            <div class="card">
               <ng-container *ngIf="order.restaurantId == restaurantId && order.orderStatus!= 'Cart'">
+                <div class="card">
                 <div class="card-header">
                   <div class="order-title">Order No. {{i+1}}</div>
                 </div>
@@ -64,14 +64,14 @@
                     <button type="submit" class="btn btn-primary" (click)="updateOrderStatus(order)">Save</button>
                   </form>
                 </div>
+                </div>
               </ng-container>
-            </div>
           </ng-container>
         </div>
       </div>
       <div class="modal-footer">
         <ng-container *ngIf="(selectedUserOrders$ | async) as orders;">
-          <div class="order-total">Total Cost : {{getTotal(orders).toFixed(2)}}</div>
+          <div class="order-total" *ngIf="getTotal(orders).toFixed(2)!=0.00; else loading" >Total Cost : {{getTotal(orders).toFixed(2)}}</div>
         </ng-container>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
         <!--<button type="submit" class="btn btn-primary" (click)="updateAllOrderStatus('Paid')">Mark All as Paid</button>-->
@@ -99,3 +99,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="order-total">User yet to order</div>
+</ng-template>

@@ -36,7 +36,8 @@ export class GlobalutilService {
   }
 
   getBaseUrl():string{
-    return "http://eazydine-menu-service-lb-298016264.us-east-1.elb.amazonaws.com/";
+    return "http://api.eazydineapp.com/";
+    //return "http://eazydine-menu-service-lb-298016264.us-east-1.elb.amazonaws.com/";
     //return "http://localhost:8080/"
   }
 }

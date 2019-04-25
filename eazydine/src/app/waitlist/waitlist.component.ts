@@ -66,7 +66,7 @@ export class WaitlistComponent implements OnInit {
         .then(data => this.waitlistService.updateWaitListStatus(this.restaurantId, this.selectedUser,this.firebaseTable)
             .then(data => {
               console.log("Updated Waitlist");
-              this.userOrders$.subscribe(orders => {
+              let restSubscription = this.userOrders$.subscribe(orders => {
                 for(let order of orders){
                   if(order.orderStatus == "PreOrder" && order.restaurantId == this.restaurantId){
                     this.userService.updateUserOrder(this.selectedUser.userId, "Placed", order);
@@ -75,7 +75,7 @@ export class WaitlistComponent implements OnInit {
                 console.log("Updated Orders");
               });
             }));
-  }
+    }
 
   addWaitListUser(){
     console.log(this.newWaitlistUser);
